@@ -21,6 +21,7 @@ class PDFController extends Controller
 	$Designation = "Supervisor";
 	$tarehe = "2023-04-23";
 	$experyDate = "2023-04-23";
+     $imagePath = public_path('img/ppt.jpg'); // Update with the correct path to your image
 
     $date=date_create($tarehe);
     $approval_date= date_format($date,"d F Y");
@@ -39,9 +40,8 @@ class PDFController extends Controller
 
         $pdf->Image(public_path('img/idcards.png'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'PNG');
 
-                  // Add the image
-            $imagePath = public_path('img/ppt.jpg'); // Update with the correct path to your image
-            $pdf->Image($imagePath, 13, 65, 55, 0, 'JPEG');
+        // Add the image
+        $pdf->Image($imagePath, 14, 65, 58, 0, 'JPEG');
 
        $pdf->SetFont('Arial', 'B', 16);
        $pdf->SetTextColor(0, 0, 0); // Set text color (RGB values)
