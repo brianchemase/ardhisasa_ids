@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::get('/generate-pdf', 'PDFController@generatePDF');
 Route::get('/pdf', [PDFController::class, 'generatePDF']);
+Route::get('/secondpdf', [PDFController::class, 'generateStaffID']);
 
