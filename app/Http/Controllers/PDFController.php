@@ -34,7 +34,8 @@ class PDFController extends Controller
         $pdf = new Fpdf('L', 'mm', 'A4');
         $pdf->AddPage('L', 'A4');
 
-        $pdf->Image(public_path('img/idcards.png'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'PNG');
+        $pdf->Image(public_path('img/bg/idcards.png'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'PNG');
+        
 
         // Add the image
         $pdf->Image($imagePath, 14, 65, 58, 0, 'JPEG');
@@ -82,6 +83,7 @@ class PDFController extends Controller
 	$personalNo = "2023123456";
 	$station = "Station";
 	$Designation = "Supervisor";
+    $Directorate="Directorate";
 	$tarehe = "2023-04-23";
 	$experyDate = "2023-04-23";
      $imagePath = public_path('img/ppt.jpg'); // Update with the correct path to your image
@@ -100,41 +102,51 @@ class PDFController extends Controller
         $pdf->AddPage('L', 'A4');
 
 
-        //$pdf->Image($bgpath, 0, 0, $pdf->getPageWidth(), $pdf->getPageHeight(), '', '', '', false, 300, '', false, false, 0);
-
-       $pdf->Image(public_path('img/bg/bg.jpg'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'JPG');
+       
+       $pdf->Image(public_path('img/bg/staffidcards.png'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'PNG');
         //$pdf->Image(public_path('img/staffidcards.png'), 0, 0, $pdf->GetPageWidth(), $pdf->GetPageHeight(), 'PNG');
 
         // Add the image
-        $pdf->Image($imagePath, 14, 65, 58, 0, 'JPEG');
+        $pdf->Image($imagePath, 52, 55, 51, 0, 'JPEG');
 
        $pdf->SetFont('Arial', 'B', 16);
        $pdf->SetTextColor(0, 0, 0); // Set text color (RGB values)
-       $pdf->SetXY(80, 63); // Set position for text
+       $pdf->SetXY(58, 106); // Set position for text
        $pdf->Cell(0, 10, $client_names, 0, 1); // Add the text
 
-       $pdf->SetXY(80, 80); // Set position for text
-       $pdf->Cell(0, 10, $id_no, 0, 1); // Add the text
-
-       $pdf->SetXY(80, 100); // Set position for text
-       $pdf->Cell(0, 10, $personalNo, 0, 1); // Add the text
-
-       $pdf->SetXY(80, 115); // Set position for text
+       $pdf->SetXY(58, 115); // Set position for text
        $pdf->Cell(0, 10, $station, 0, 1); // Add the text
 
-       $pdf->SetXY(80, 132); // Set position for text
+       $pdf->SetXY(58, 125); // Set position for text
+       $pdf->Cell(0, 10, $personalNo, 0, 1); // Add the text
+
+       $pdf->SetXY(58, 134); // Set position for text
        $pdf->Cell(0, 10, $Designation, 0, 1); // Add the text
 
+       $pdf->SetXY(58, 142); // Set position for text
+       $pdf->Cell(0, 10, $Directorate, 0, 1); // Add the text
 
-       $pdf->SetXY(12, 153); // Set position for text
+
+      // $pdf->SetXY(80, 130); // Set position for text
+       //$pdf->Cell(0, 10, $id_no, 0, 1); // Add the text
+
+       
+       
+
+      
+
+
+       $pdf->SetXY(16, 157); // Set position for text
        $pdf->Cell(0, 10, $approval_date, 0, 1); // Add the text
 
 
-       $pdf->SetXY(12, 167); // Set position for text
+       $pdf->SetXY(16, 170); // Set position for text
        $pdf->Cell(0, 10, $experyDate, 0, 1); // Add the text
 
        $pdf->SetXY(97, 179); // Set position for text
        $pdf->Cell(0, 10, $serialNo, 0, 1); // Add the text
+
+       
        
        
        $pdf->Output();
