@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Codedge\Fpdf\Fpdf\Fpdf;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 //use Fpdf;
 
 class PDFController extends Controller
@@ -153,4 +155,40 @@ class PDFController extends Controller
         exit;
 
     }
+
+    public function generatePdfWithQRCode()
+    {
+        // Create a new FPDF instance
+        $pdf = new FPDF();
+
+        // Add a new page
+        $pdf->AddPage();
+
+        // Generate the QR code using the "endroid/qr-code" library
+        $qrCodeText = 'https://www.example.com'; // The content you want to encode in the QR code
+        $qrCodeSize = 100; // The size of the QR code in pixels
+
+        // Create a new instance of the QrCode class
+        $qrCode = new QrCode($qrCodeText);
+
+        // Set the size of the QR code
+        $qrCode->setSize($qrCodeSize);
+
+        // Create a new instance of the PngWriter class to write the QR code as PNG
+        $writer = new PngWriter();
+
+        // Define the path to save the QR code image file
+        $qrCodeImagePath = sys_get_temp_dir() . '/qrcode.png';
+
+        // Write the QR code image data to the file without a logo
+        $writer->write($qrCode, $qrCodeImagePath, null);
+
+        // Add the QR code image to the PDF
+        $pdf->Image($qrCodeImagePath, 10, 10, 50, 50, 'PNG');
+
+        // Output or save the PDF
+        $pdf->Output('output.pdf', 'I');
+    }
+
+
 }
