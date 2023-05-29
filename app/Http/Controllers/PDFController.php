@@ -190,5 +190,10 @@ class PDFController extends Controller
         $pdf->Output('output.pdf', 'I');
     }
 
+    public function viewqr()
+    {
+        return view('view_qr_code');
+    }
+
 
 }
